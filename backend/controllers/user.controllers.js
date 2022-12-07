@@ -3,7 +3,6 @@ const query = require("./queries")
 const mailValidator = require("email-validator")
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const contrllers = require("./contrllers")
 
 // creation de token
 const Maxage = 1*60*60*1000

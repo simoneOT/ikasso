@@ -1,6 +1,6 @@
 const route = require('express').Router()
 const AppChcontrollers = require("../controllers/app_ch")
-const verifyToken = require("../VerifyToken/verifyToken")
+const verifyToken = require("../midelwer/verifyToken")
 
 // routes des appartement et chambre
 route.get("/",  AppChcontrollers.getAppartement)
