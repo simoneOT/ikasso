@@ -21,7 +21,8 @@ const getAllUsers = (req, res)=>{
     })
 }
 const getOneUser = (req, res)=>{
-    const idUtili = req.params.idUtili  
+    const id = req.params.id 
+    const idUtili = parseInt(id)
     pool.query(query.getuser, [idUtili],  (error, reponse)=>{
         if (error) {
             res.status(500).json(error)
@@ -29,7 +30,7 @@ const getOneUser = (req, res)=>{
             if (idUtili) {
                 res.status(200).json(reponse.rows)
             } else {
-                res.status(401).json({message:"Erreur au niveau du serveur!"})
+                res.status(401).json({message:"Pas d'utilisateur"})
             }
         }
     })
@@ -44,6 +45,7 @@ const signup =  (req, res) =>{
             res.status(401).json({message: "Ce mail est déja prit"})
         } else{
             const email =  mailValidator.validate(mail)
+            console.log(email);
             if (!email) {
                res.status(401).json({message: "Votre email n'est pas valide!"})
             }  else if (password =="") {

@@ -5,7 +5,8 @@ const verifyToken = require("../midelwer/verifyToken")
 // routes des appartement et chambre
 route.get("/",  AppChcontrollers.getAppartement)
 route.get("/:id", AppChcontrollers.getOneAppartement)
-route.post("/", verifyToken.verifyTokenAndAh, AppChcontrollers.InsertAppartement)
-route.patch("/:id", verifyToken.verifyTokenAndAh,  AppChcontrollers.updateAppartement)
-route.delete("/:idappart_ch", verifyToken.verifyTokenAndisAdmin, AppChcontrollers.deleteapparte_ch)
+route.get("/getAppartementofuser/userAppartement", verifyToken.verifyTokenAndAh, AppChcontrollers.getappa_user)
+route.post("/inserteApparteOrchambre", verifyToken.verifyTokenAndAh, AppChcontrollers.InsertAppartement)
+route.patch("/updateappartement/:id", verifyToken.verifyTokenAndAh,  AppChcontrollers.updateAppartement)
+route.delete("/:id", verifyToken.verifyTokenAndisAdmin, AppChcontrollers.deleteapparte_ch)
 module.exports = route

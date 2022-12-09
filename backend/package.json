@@ -1,4 +1,14 @@
 {
+  "name": "ikasso",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serveur.js",
+  "scripts": {
+    "start": "nodemon serveur.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
@@ -9,8 +19,5 @@
     "nodemon": "^2.0.20",
     "package.json": "^2.0.1",
     "pg": "^8.8.0"
-  },
-  "scripts": {
-    "start": "node serveur.js"
   }
 }

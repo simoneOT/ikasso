@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next)=>{
-    const authHendler= req.headers.token
+    const authHendler= req.headers.token 
     if (authHendler) {
         const token =  authHendler.split(" ")[1]
-        jwt.verify(token, process.env.SECRET_SEC, (err, ConnectUser)=>{
+        jwt.verify(token, process.env.TOKEN_SECRETE, (err, ConnectUser)=>{
             if (err) res.status(403).json({message:"token n'est pas valide"})
             req.ConnectUser = ConnectUser
             next();

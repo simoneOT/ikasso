@@ -2,7 +2,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const userRoutes = require("./routes/user.routes")
 const app_chRoute = require("./routes/app_ch.route")
-require('dotenv').config({path: './config/.env'})
+require('dotenv').config({path: './.env'})
 const app = express()
 
 // bodyParser
