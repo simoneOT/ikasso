@@ -18,7 +18,7 @@ const InsertAppartemen = "INSERT INTO chambres_appartements(type_app_ch, ville_a
 const getdeleteAppartement="SELECT * FROM chambres_appartements WHERE id=$1"
 const Dlete_appartement = "DELETE FROM public.chambres_appartements WHERE id=$1"
 const select_app_ch = "SELECT * FROM chambres_appartements WHERE id=$1 and idutili=$2"
-const getappartement_user = "SELECT * FROM chambres_appartements WHERE idutili=$2"
+const getappartement_user = "SELECT * FROM chambres_appartements WHERE idutili=$1"
 const updateAppartement = "UPDATE chambres_appartements SET type_app_ch=$3, ville_app_ch=$4, quartier_app_ch=$5, rue_app_ch=$6, porte_app_ch=$7, description_ch=$8, prix=$9 WHERE id=$1 and idUtili=$2"
 
 // les appartement reserver par des utilisateurs
@@ -26,11 +26,15 @@ const getReservation = "SELECT * FROM reservation WHERE  reserver=$1"
 const selet_reserver = "SELECT * FROM reservation  WHERE idapp=$1 and datesortie  BETWEEN $2 and $3  ORDER BY datesortie"
 const inserReservation ="INSERT INTO reservation (idapp, idutili, dateentrer, datesortie)VALUES ( $1, $2, $3, $4);" 
 const updateReservation= "UPDATE reservation SET reserver=$2  WHERE id=$1"
+// image appartement
+const select_image_app= "SELECT * FROM images WHERE idapp=$1"
+const imageAppartement = "INSERT INTO images (idapp, images)  VALUES ( $1, $2)"
+const updatdeImage = "UPDATE images SET images=$2  WHERE id=$1 and idapp=$3"
 module.exports = { 
     getAllUsers, getuser, signup, Login, updatepassword, OneUser, updateUser,
     // querys des appartements
     getAllAppartement, getOneAppartement, InsertAppartemen, select_appartement_porte_rue, getdeleteAppartement, Dlete_appartement, 
     select_app_ch,updateAppartement, profile_user, getappartement_user,
     // reservation
-    getReservation, selet_reserver, inserReservation, updateReservation
+    getReservation, selet_reserver, inserReservation, updateReservation, select_image_app, imageAppartement, updatdeImage
 }

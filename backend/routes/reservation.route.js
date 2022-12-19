@@ -7,4 +7,5 @@ route.post("/reserver/:id", verifyToken.verifyTokenAndAh, AppChcontrollers.reser
 route.get('/', verifyToken.verifyTokenAndisAdmin, AppChcontrollers.AllReservation)
 route.patch('/update/:id',verifyToken.verifyTokenAndisAdmin, AppChcontrollers.updateReservation)
 
+
 module.exports=route

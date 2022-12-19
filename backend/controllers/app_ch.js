@@ -109,5 +109,26 @@ const getappa_user = (req, res)=>{
     }
 }
 
+const postimages = (req, res)=>{
+    const{ idapp, image }= req.body
+    pool.query(query.select_image_app, [idapp])
+    .then((reponse)=>{
+        if (reponse.rows.length<=8) {
+            pool.query(query.imageAppartement, [idapp, image ])
+            .then((respo)=>{
+                return res.status(200).json(reponse.rows)
+            })
+            .catch((error) =>{
+                return res.status(500).json(error)
+            })
+        } else {
+            return res.status(401).json({message:"Le nombre maximum de photo est 8"})
+        }
+    })
+    .catch((error) =>{
+        return res.status(500).json(error)
+    })
+}
+
 module.exports={getAppartement, getOneAppartement, InsertAppartement, updateAppartement, deleteapparte_ch,
-    getappa_user}
+    getappa_user, postimages}
