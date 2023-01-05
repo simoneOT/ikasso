@@ -1,6 +1,6 @@
 const route = require('express').Router()
 const AppChcontrollers = require("../controllers/res.controllers")
-const verifyToken = require("../midelwer/verifyToken")
+const verifyToken = require("../middleware/verifyToken")
 
 
 route.post("/reserver/:id", verifyToken.verifyTokenAndAh, AppChcontrollers.reserver)

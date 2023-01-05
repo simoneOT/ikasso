@@ -1,7 +1,7 @@
 const route = require('express').Router()
 const AppChcontrollers = require("../controllers/user.controllers")
-const upload = require('../midelwer/upload')
-const verifyToken = require("../midelwer/verifyToken")
+const upload = require('../middleware/upload')
+const verifyToken = require("../middleware/verifyToken")
 
 
 route.get("/",  AppChcontrollers.getAllUsers)
