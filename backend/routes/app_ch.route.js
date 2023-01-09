@@ -14,7 +14,7 @@ route.get("/getAppartementofuser/userAppartement", verifyToken.verifyTokenAndAh,
 route.post("/inserteApparteOrchambre", verifyToken.verifyTokenAndAh, AppChcontrollers.InsertAppartement)
 route.patch("/updateappartement/:id", verifyToken.verifyTokenAndAh,  AppChcontrollers.updateAppartement)
 route.delete("/:id", verifyToken.verifyTokenAndisAdmin, AppChcontrollers.deleteapparte_ch)
-//image de l'appartemen
+//image de l'appartement
 route.get("/getAppartement/Appartement/display/:idapp", controlimage.displayImage)
 route.post("/postimage/images/:idapp",verifyToken.verifyTokenAndAh, validityimage, upload.single('picture'),  controlimage.controlimage)
 module.exports = route
