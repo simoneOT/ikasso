@@ -1,9 +1,9 @@
 const route = require('express').Router()
 const AppChcontrollers = require("../controllers/app_ch")
-const verifyToken = require("../midelwer/verifyToken")
+const verifyToken = require("../middleware/verifyToken")
 const controlimage = require('../controllers/controlimage')
 const multer = require('multer')
-const validityimage = require('../midelwer/validityimage')
+const validityimage = require('../middleware/validityimage')
 const upload = multer()
 
 // routes des appartement et chambre
