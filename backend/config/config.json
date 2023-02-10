@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "logineo",
-    "password": "logineopg",
+    "username": "postgres",
+    "password": "61246323",
     "database": "ikasso_development",
     "host": "localhost",
     "port": 5432,

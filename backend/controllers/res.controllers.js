@@ -1,4 +1,4 @@
-const pool = require("../config/db");
+const pool = require("../config/db.config");
 const query = require("./queries")
 const moment = require('moment')
 moment().format();
@@ -6,6 +6,7 @@ moment().format();
 const reserver= ( req, res)=>{
     const idapp_ch = parseInt(req.params.id)
     const{dateEntrer, dateSortie}= req.body
+    console.log(idapp_ch, dateEntrer, dateSortie);
     if (idapp_ch && req.id) {
         pool.query(query.selet_reserver, [idapp_ch, dateEntrer, dateSortie ], (error, reponse)=>{
             if (error) {

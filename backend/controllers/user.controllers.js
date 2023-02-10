@@ -1,4 +1,4 @@
-const pool = require("../config/db");
+const pool = require("../config/db.config");
 const query = require("./queries")
 const mailValidator = require("email-validator")
 const bcrypt = require('bcrypt');
@@ -14,6 +14,7 @@ function createToken(id, admin){
 const getAllUsers = (req, res)=>{
     pool.query(query.getAllUsers, (error, reponse)=>{
         if (error) {
+            console.log(error);
             res.status(500).json(error)
         } else {
             res.status(200).json(reponse.rows)
@@ -36,17 +37,16 @@ const getOneUser = (req, res)=>{
     })
 }
 const signup =  (req, res) =>{
-    const{nom_prenom, mail, tel, ville, quartier, password, profil}= req.body
-    pool.query(query.OneUser,[mail], (error, reponse)=>{
+    const{nom, email, telephone, adresse, password, profil}= req.body
+     pool.query(query.OneUser, [email], (error, reponse)=>{
         const mailrows = !reponse.rows.length
         if (error) {
             res.status(500).json(error)
         } else if(!mailrows) {
             res.status(401).json({message: "Ce mail est déja prit"})
         } else{
-            const email =  mailValidator.validate(mail)
-            console.log(email);
-            if (!email) {
+            const mail =  mailValidator.validate(email)
+            if (!mail) {
                res.status(401).json({message: "Votre email n'est pas valide!"})
             }  else if (password =="") {
                 res.status(401).json({message:"veillez entrer votre mot de passe!"})
@@ -55,19 +55,19 @@ const signup =  (req, res) =>{
             }else{
                 bcrypt.hash(password, 10)
                 .then(hash=>{
-                    pool.query(query.signup,[nom_prenom, mail, tel, ville, quartier, hash, profil], (err, rep)=>{
+                    pool.query(query.signup,[nom, email, telephone, adresse, hash], (err, rep)=>{
                         if(err) throw res.status(500).json({error})
                         res.status(200).json({message: "Vous etes inscrit avec succès!"})
                     })
-            })
-            .catch(error=> res.status(500).json(error))
+                })
+                .catch(error=> res.status(500).json(error))
             }
         }
-    } )
+     } )
 }
 const signIn= (req, res)=>{
-    const{mail, password}= req.body
-    pool.query(query.Login, [mail, password], (error, reponse)=>{
+    const{email, password}= req.body
+    pool.query(query.Login, [email, password], (error, reponse)=>{
         const user = reponse.rows.length
         if (!user) {
             res.status(401).json({message: "Mot de passe ou nom d'utilisation incorrect"})
@@ -132,11 +132,10 @@ const biographie = (req, res)=>{
 // profile 
 const uploadeProfile =  (req, res)=>{
     const id = parseInt(req.params.id)
-    console.log(id);
     if(!id){
         return res.status(400).send("id n'est pas valide"+req.params.id);
     } else{
-        let filename = req.file!== null? "./uploads/"+req.params.id+".jpg":""
+        let filename = id? "./images/"+id+".jpg":""
         pool.query(query.profile_user, [id, filename], (error, reponse)=>{
             if (error){
                 res.status(500).json({error})

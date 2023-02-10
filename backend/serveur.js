@@ -8,13 +8,18 @@ const cors = require('cors')
 const app = express()
 
 const corsOPtion = {
-        "origin": "*",
-        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-        "preflightContinue": false,
-        "optionsSuccessStatus": 204
+    "origin":  "*",
+    credential: true,
+    "proxy": "http://localhost:3000",
+    'allowedHeaders':['sessionId', 'Content-Type'],
+    'exposedHeaders':['sessionId'],
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 200,
 }
 
 // bodyParser
+//app.use('images', express.static(__dirname+'/client/public/images'));
 app.use(cors(corsOPtion))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

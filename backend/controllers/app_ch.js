@@ -1,4 +1,4 @@
-const pool = require("../config/db");
+const pool = require("../config/db.config");
 const query = require("./queries")
 
 const getAppartement = (req, res)=>{
@@ -13,15 +13,13 @@ const getAppartement = (req, res)=>{
 const getOneAppartement = (req, res)=>{
     const id = parseInt(req.params.id)
     if (id) {
-        pool.query(query.getdeleteAppartement, [id], (error, reponse)=>{
-            if (error) {
-                return res.status(500).json(error)
-            } else {
-                return res.status(200).json(reponse.rows)
-            }
+        pool.query(query.getOneAppartement, [id])
+        .then((reponse)=>{
+            res.status(200).json(reponse.rows)
         })
-    } else {
-        return res.status(401).json({message:"Pas d'appartement de ce genre"})
+        .catch((error)=> {
+            console.log(error);
+            res.status(500).json(error)})
     }
 }
 const InsertAppartement = (req, res)=>{

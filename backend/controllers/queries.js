@@ -3,16 +3,16 @@
 // les requete de user
 const getAllUsers = "SELECT * FROM utilisateurs"
 const getuser = "SELECT * FROM utilisateurs as a WHERE a.id=$1"
-const OneUser = "SELECT * FROM utilisateurs WHERE mail=$1"
-const signup = "INSERT INTO utilisateurs ( nom_prenom, mail, tel, ville, quartier, password, profil) VALUES ($1, $2, $3, $4, $5, $6, $7)"
-const Login = "SELECT * FROM utilisateurs WHERE mail = $1 and password=$2"
-const updatepassword ="UPDATE utilisateurs SET password=$1 WHERE  mail=$2"
+const OneUser = "SELECT * FROM utilisateurs WHERE email=$1"
+const signup = "INSERT INTO utilisateurs ( nom, email, telephone, adresse, password) VALUES ($1, $2, $3, $4, $5)"
+const Login = "SELECT * FROM utilisateurs WHERE email = $1 and password=$2"
+const updatepassword ="UPDATE utilisateurs SET password=$1 WHERE  email=$2"
 const updateUser ="UPDATE utilisateurs SET nom_prenom=$1, tel=$3, ville=$4, quartier=$5, profil=$6 id  mail=$2"
 const profile_user = "UPDATE utilisateurs SET profil=$2  WHERE id=$1"
 
 // querys de appartement
 const getAllAppartement = "SELECT * FROM chambres_appartements"
-const getOneAppartement = "SELECT * FROM chambres_appartements WHERE rue_app_ch=$1 and rue_app_ch=$1"
+const getOneAppartement = "SELECT * FROM chambres_appartements WHERE idapp=$1"
 const select_appartement_porte_rue = "SELECT * FROM chambres_appartements WHERE rue_app_ch=$1 and porte_app_ch=$2 and ville_app_ch=$3 and quartier_app_ch=$4"
 const InsertAppartemen = "INSERT INTO chambres_appartements(type_app_ch, ville_app_ch, quartier_app_ch, rue_app_ch, porte_app_ch, description_ch, prix, dateajout, idUtili)VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9);"
 const getdeleteAppartement="SELECT * FROM chambres_appartements WHERE id=$1"
