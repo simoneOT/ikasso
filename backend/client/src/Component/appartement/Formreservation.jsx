@@ -1,46 +1,38 @@
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import axios from 'axios'
 import moment from 'moment'
-import React, { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { reserver } from '../../query/Url'
 import {accountservice} from '../Log/accountservice'
+import { datareservation } from '../redux/slice/dateredux'
 
 
-function Formreservation({ idapp, price }) {
-    const [reservation, setReservation] = useState("")
-    const date = useSelector(state => state.counter)
-  const userId = useSelector(state => state.users)
-  const [user, setUser] = useState()
-    const [hundaldate, setHundaldate] = useState(null)
-    const [currentRadioValue, setCurrentRadioValue] = useState('radio-1')
-    const[detail, setDetail]=useState(false)
-    const errr_reservation = document.querySelector(".errr_reservation")
-    const frais = accountservice.acountday(hundaldate) * price
+function Formreservation({ appaImg, idapp, price }) {
+  const date = useSelector(state => state.dateRedux)
+  const [hundaldate, setHundaldate] = useState(null)
+  const [currentRadioValue, setCurrentRadioValue] = useState('radio-1')
+  const[detail, setDetail]=useState(false)
+  const frais = accountservice.acountday(hundaldate) * price
   const fraisService = accountservice.acountday(hundaldate) * 50
-    const total = frais + fraisService
+  const total = frais + fraisService
+  let reservationdata = {
+    image: appaImg,
+    price:price,
+    frais: frais,
+    fraisService: fraisService,
+    total: total,
+  }
+    const dispacth = useDispatch()
     const Hundalsimut = () => {
-        axios.post(`${reserver}` + idapp, { dateEntrer: hundaldate.date.dateentrer, dateSortie: hundaldate.date.datesortie })
-            .then((res) => {
-                setReservation(res.data)
-            })
-            .catch(((error) => {
-                    console.log(error);
-                if (error) {
-                   accountservice.islogged() ? errr_reservation.innerHTML="":  errr_reservation.innerHTML= error.response.data.message
-                }
-            }))
-    }
+        dispacth(datareservation(reservationdata))
+      }
     const handleRadioChange = (e) => {
     setCurrentRadioValue(e.target.value);
-    };
+  };
     useEffect(() => {
       setHundaldate(date)
-      userId && setUser(userId)
     }, [date])
   return (
       <div className="container_reservation">
@@ -101,34 +93,37 @@ function Formreservation({ idapp, price }) {
                     </div>
               </div>
                 <div className="button_reservation" onClick={() => Hundalsimut()}>
-                  {accountservice.islogged()?<NavLink to="/confreservation/">Réserver</NavLink>:<p>veillez vous connecter pour</p>}
+                  {accountservice.islogged() ? <NavLink to={`/confreservation/${idapp}`}>
+                    Réserver
+                    </NavLink> : <p>veillez vous connecter pour</p>
+                  }
               </div>
               <div className="errr_reservation"></div>
                 <div className="conseil">
                     <p>ipsum voluptatum sed temporibus, maxime quis rerum hic, magni odio?</p>
               </div>
                 <div className="flex_date"  onClick={()=>setDetail(!detail)}>
-                    <p>Afficher les details de prix <FontAwesomeIcon icon={faChevronDown} /></p>
+                    <div>Afficher les details de prix <FontAwesomeIcon icon={faChevronDown} /></div>
               </div>
               {
                 detail && <div className="prix_frais">
-                                <div className="frais">
-                                    <p id='frais'>{price}FCFA x {accountservice.acountday(hundaldate) > 1 ?
-                                        `${accountservice.acountday(hundaldate)}nuits` : `${accountservice.acountday(hundaldate)}nuit`}</p>
-                                    <p>{frais} FCFA</p>
-                                </div>
-                                <div className="fraisService">
-                                    <p id='fraisService'>frais de service</p>
-                                    <p>{fraisService} FCFA</p>
-                                </div>
-                                <div className="barre"></div>  
-                                <div className="detail_prix">
-                                    <div className="reservetotal">
-                                        <p>Total:</p>
-                                        <p>{total} FCFA</p>
-                                    </div>
-                                </div>
-                            </div>
+                  <div className="frais">
+                        <p id='frais'>{price}FCFA x {accountservice.acountday(hundaldate) > 1 ?
+                            `${accountservice.acountday(hundaldate)}nuits` : `${accountservice.acountday(hundaldate)}nuit`}</p>
+                        <p>{frais} FCFA</p>
+                    </div>
+                    <div className="fraisService">
+                        <p id='fraisService'>frais de service</p>
+                        <p>{fraisService} FCFA</p>
+                    </div>
+                    <div className="barre"></div>  
+                    <div className="detail_prix">
+                        <div className="reservetotal">
+                            <p>Total:</p>
+                            <p>{total} FCFA</p>
+                        </div>
+                    </div>
+                  </div>
               }
             </div>
     </div>

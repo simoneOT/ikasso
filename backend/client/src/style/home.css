@@ -160,6 +160,18 @@
 .confirm{
     flex: 2;
 }
+.pay-1{
+    width: 800px;
+}
+.cars{
+    min-height: 56px !important;
+    width: 100% !important;
+    border: none !important;
+    outline: none !important;
+    margin: 0px !important;
+    padding: 26px 36px 10px 12px;
+}
+
 .infreservation{
     flex: 1.3;
     margin-left: 70px;
@@ -207,6 +219,40 @@
     padding: 24px 0px;
     font-size: 1.5rem;
     font-weight: bold;
+}
+.update .button{
+    padding: 10px 10px;
+}
+.update .button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 10px;
+}
+.inconconfig{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right:20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.inconconfig:hover{
+    background-color: rgba(0, 0, 0, .2);
+}
+ .updatedate{
+   padding: 10px 20px;
+   background-color: rgb(42, 65, 165);
+   color: white;
+   font-size: 18px;
+   border-radius: 10px;
+   float: right;
+   margin-right: 20px;
+}
+#popup-2 > div.modal > div > div > div.rdp-month.rdp-caption_start > table > tbody > tr > td > button,
+#popup-2 > div.modal > div > div > div.rdp-month.rdp-caption_end > table > tbody > tr> td > button
+{
+    padding: 30px !important;
 }
 .confresrvaion .confirp-1 .confirp{
     display: flex;
@@ -264,6 +310,27 @@
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
+.numberpay{
+    font-size: 18px;
+}
+.numer-1{
+    display: flex;
+    display: none;
+}
+.numer-2{
+    height: 100%;
+    width: 37px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.numer-3{
+        height: 40px;
+    font-size: 20px;
+}
+.numer-3 input:focus{
+    outline: none;
+}
 .connectreservation .confinfo{
     font-size: 16px;
 }
@@ -285,6 +352,7 @@
     display: flex;
     padding: 0px 80px;
 }
+
 
 
 

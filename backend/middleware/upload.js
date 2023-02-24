@@ -1,19 +1,20 @@
 const multer = require('multer')
 const maxSize = 1*1000*1000
 
-const  stockage  =  multer.diskStorage ( { 
+const stockage = multer.diskStorage({ 
     destination : function  ( req ,  file ,  cb )  { 
-        
+        console.log(file);
          cb( null ,  `${__dirname}/../client/public/profil/` ) 
     },
-    filename : function  ( req ,  file ,  cb )  { 
-    const profil = Date.now() + '-' + Math.round(Math.random() * 1E9)+".jpg"
+  filename: function (req, file, cb) { 
+    const profil = req.params.id+".jpg"
     req.profil= profil
     cb ( null , profil)
   },
 })
   module.exports = multer({ storage: stockage,
-  fileFilter: (req, file, cb)=>{
+    fileFilter: (req, file, cb) => {
+      console.log(file);
     if (file.size > maxSize) {
       req.imageValidationError = "Image size can't exceed 2MB";
       return cb(req.fileValidationError);
@@ -25,6 +26,4 @@ const  stockage  =  multer.diskStorage ( {
         return cb(req.fileValidationError);
     }
     }
-}).single('picture')
-
-  module.exports = multer({storage: stockage}).single('file')
+}).single('file')

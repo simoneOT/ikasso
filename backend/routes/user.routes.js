@@ -9,6 +9,6 @@ route.get("/:id", AppChcontrollers.getOneUser)
 route.post("/",  AppChcontrollers.signup)
 route.post("/login",  AppChcontrollers.signIn)
 route.patch("/updatepassword/:id", AppChcontrollers.updatepassword)
-route.patch("/biographie/:id", verifyToken.verifyTokenAndAh,  AppChcontrollers.biographie)
-route.patch("/uploidprofile/:id", verifyToken.verifyTokenAndAh, upload, AppChcontrollers.uploadeProfile)
+route.patch("/biographie/:id",   AppChcontrollers.biographie)
+route.patch("/uploidprofile/:id",  upload, AppChcontrollers.uploadeProfile)
 module.exports = route

@@ -7,6 +7,8 @@ import Navbar from "./Component/Navbar";
 import { Uidcontext } from "./Component/Log/Appcontext";
 import { useEffect, useState } from "react";
 import Confreservaion from "./pages/Confreservaion";
+import Categoriapp from "./pages/Categoriapp";
+
 
 function App() {
   const[uid, setUid]= useState(null)
@@ -16,12 +18,14 @@ function App() {
    },[uid])
   return (
     <Uidcontext.Provider value={uid}>
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/appartement/:id" element={<Appartement/>}/>
-        <Route path="/confreservation/" element={<Confreservaion/>}/>
-        <Route path="*" element={<NoPage />}/>
-      </Routes>
+        <Navbar/>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/appartement/:id" element={<Appartement/>}/>
+          <Route path="/confreservation/:id" element={<Confreservaion/>}/>
+          <Route path="/categorieappartement/:nameapp" element={<Categoriapp/>}/>
+          <Route path="*" element={<NoPage />}/>
+        </Routes>
     </Uidcontext.Provider>
   );
 }

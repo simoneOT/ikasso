@@ -11,16 +11,17 @@ const storage =   multer.diskStorage ( {
     cb ( null , uniqueSuffix)
   },
  })
-module.exports = multer({ storage: storage,
-  fileFilter: (req, file, cb)=>{
+module.exports = multer({
+  storage: storage, limits: {
+    fileSize:maxSize
+},
+  fileFilter: (req, file, cb) => {
+    console.log(file);
     if (req.counterImage===7) {
       req.imageValidationError = "Au maximum  7 images";
       return cb(req.fileValidationError);
   }
-    if (file.size > maxSize) {
-      req.imageValidationError = "Image size can't exceed 2MB";
-      return cb(req.fileValidationError);
-    }
+   
     if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "image/webp") {
         cb(null, true);
     } else {

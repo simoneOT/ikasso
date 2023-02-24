@@ -15,6 +15,10 @@ body{
     width: 100%;
     top: 0;
 }
+.wrapper{
+  max-height: 90px;
+  max-weight: 900px;
+}
 .container-wrapper{
     display: flex;
     flex-direction: row;
@@ -28,10 +32,13 @@ body{
     font-size: 50px;
     color: white;
 }
+
 .container-wrapper .contenerSearch{
+  width: 100%;
+  height: 100%;
     display: flex;
-    border: 1px solid #ccc;
-    padding: 15px;
+    border: 1px solid #cccccc;
+    padding: 10px 15px;
     border-radius: 50px;
     color: black;
     font-size: 20px;
@@ -39,10 +46,21 @@ body{
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, .2);
 }
 .dateentrer, .datesorie, .nombreplace, .iconsearch{
-    margin: 9px 15px;
+    font-size: 18px;
+    margin: 0px 10px;
     color: white;
     cursor: pointer;
     letter-spacing: 1px; 
+}
+.Popupcherche1, .tooltipBoundary{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nombreplace, .iconsearch{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .space{
     border-left: 1px solid #ccc;
@@ -151,16 +169,23 @@ body{
   }
   .dateentrer, .datesorie {
     padding: 0px 2px;
-    width: 150px;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  .datesorie-1, .dateentreer-1{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+  }
   .active{
-    border:1px solid #ccc;
-    border-radius: 30px;
-    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, .3);
+    padding: 10px 30px;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 5px;
   }
   .content_form .form .fleche :hover{
     border-radius: 50%;
@@ -241,4 +266,159 @@ body{
 #root > div.container_navbar > div > div.wrapper > div > div.calandar > div.DayPicker > div > div > div.rdp-month.rdp-caption_end > table > tbody > tr > td > button{
   margin: 16px !important;
 }
- 
+.nameappartement{
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing:1px ;
+}
+.nameappartement ul li{
+  padding: 10px 30px;
+  color: rgb(42, 65, 165);
+}
+.nameappartement ul li:hover{
+  background-color: rgba(0, 0, 0, .2);
+  border-radius: 5px;
+  cursor: pointer;
+}
+#popup-root .popup-overlay .popup-content {
+  padding: 20px;
+  width: 50%;
+  height: 80%;
+}
+.updateprofil{
+  padding: 20px;
+  font-size: 18px;
+}
+.updateprofil-2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.updateprofil-3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.updateprofil-profil{
+  margin-left: 10px;
+}
+.updateprofil-profil img{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.name-updateprofil{
+  display: flex;
+}
+.name-updateprofil .color{
+  height: 10px;
+  width: 20px;
+  background-color: rgb(42, 65, 165);
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.container-updateprofil .container-updateprofil-1{
+  margin-left: 40px;
+  margin-top: 20px;
+  display: flex;
+}
+/* .updateprofil-image-container{
+  margin-right: 40px;
+} */
+.updateprofil-image-container img{
+    width: 295px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.updateprofil-image{
+  position: relative;
+}
+.icon-photo {
+  position: absolute;
+  top: 0px;
+  margin: 20px;
+  font-size: 20px;
+  color: rgb(42, 65, 165);
+}
+.profil-information-update, .container-updateprofil-2{
+  flex:1;
+  justify-content: center;
+  align-items: center;
+}
+.profil-information-1 .name,.profil-information-1 .email, .profil-information-1 .telephone, .profil-information-1 .adress{
+  padding: 9px 0px;
+}
+.profil-information .buton{
+  margin: 20px 0px;
+  cursor: pointer;
+ }
+
+.profil-information .buton, .formupdate-profil button, .updateprofil-image-container .btn input {
+  padding: 15px 20px;
+  border:1px  solid rgb(42, 65, 165);
+  color:rgb(42, 65, 165) ;
+  border-radius: 10px;
+  
+}
+.updateprofil-image-container .btn input {
+  border: 1px dashed rgb(42, 65, 165);
+  margin-left: 35px;
+}
+.error{
+  color: red;
+}
+/* .profil-information-update-1 .name-1, 
+.profil-information-update-1 .email-1, .profil-information-update-1 .telephone-1,
+.profil-information-update-1 .adress-1{
+  padding: 9px 0px;
+} */
+.formupdate-profil .btn{
+  cursor: pointer;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.formupdate-profil .btn input{
+   margin-right: 40px;
+}
+.btn .button{
+  margin-right: 20px;
+} 
+.updateprofil-image-container .btn {
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.name-1 input:focus, .email-1 input:focus, .telephone-1 input:focus, .adress-1 input:focus{
+  outline: none;
+}
+.name-1 input, .email-1 input, .telephone-1 input, .adress-1 input{
+  background-color: rgba(0, 0, 0, .1);
+  border-radius: 5px;
+  height: 40px;
+  width: 100%;
+}
+input[type="file"] {
+    display: none;
+}
+.file-upload{
+   border: 1px dashed rgb(42, 65, 165);
+    display: inline-block;
+    padding: 15px 5px;
+    cursor: pointer;
+    color: rgb(42, 65, 165);
+    font-size:20px;
+    border-radius:10px;
+    margin-top: 8px;
+}
+.succes{
+  margin-top: 5px;
+  color: green;
+  text-align: center;
+}

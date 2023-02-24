@@ -127,6 +127,25 @@ const postimages = (req, res)=>{
         return res.status(500).json(error)
     })
 }
+const getappartementnames = (req, res) => {
+    pool.query(query.getappartementname)
+        .then((reponse) => {
+            res.status(200).json(reponse.rows)
+        })
+        .catch((error) => {
+            return res.status(500).json(error)
+        })
+}
+const getdataappartementnames = (req, res) => {
+    const nameapp = req.params.nameapp
+    pool.query(query.getdataappartementname, [nameapp])
+    .then((reponse) => {
+            res.status(200).json(reponse.rows)
+        })
+    .catch((error) => {
+            return res.status(500).json(error)
+        })
+}
 
 module.exports={getAppartement, getOneAppartement, InsertAppartement, updateAppartement, deleteapparte_ch,
-    getappa_user, postimages}
+    getappa_user, postimages, getappartementnames, getdataappartementnames}

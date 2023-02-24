@@ -119,7 +119,7 @@ function Appartement() {
                     <Day />
                   </div>
                   <div className="formservation">
-                    <Formreservation idapp={idapp} price={appartement.prix}/>
+                    <Formreservation appaImg={appaImg[0]?.images} idapp={idapp} price={appartement.prix}/>
                   </div>
                 </div>
               )})

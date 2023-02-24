@@ -1,14 +1,36 @@
 import React from 'react'
-import { faChevronDown, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import {  faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useSelector } from 'react-redux';
+import { Link,  useLocation } from 'react-router-dom';
+import moment from 'moment';
+import Popupdate from '../Component/pupop/popupdate';
+import { accountservice } from '../Component/Log/accountservice';
 
 
 function Confreservaion() {
+    const idappartement = useLocation().pathname.split("/")[2]
+    const datareservation = useSelector(state => state.dateRedux)
+    let nuberday = accountservice.acountday(datareservation)
+    const Moths=["Janv", "févr", "mars", "avri", "mai", "juin", "juil", "août", "sept", "oct", "nov", "déc"]
+    const moientrer= moment(datareservation.date.dateenrer).format('l').split("/")
+    const moisorie = moment(datareservation.date.datesortie).format('l').split("/")
+    let datereservation = moientrer[0] !== moisorie[0] ? <p>{moientrer[1]} {Moths[moientrer[0]-1]}-{moisorie[1]}{"  "}{Moths[moisorie[0]-1]}</p> : <p>{moientrer[1]}-{moisorie[1]}{"  "}{Moths[moisorie[0]]}</p>
+    const numer = document.querySelector(".numer")
+    numer?.addEventListener('click', () => {
+        const controllnumer = document.querySelector(".controllnumer")
+        const cars = document.getElementById("cars").value
+        document.querySelector(".numer-1").style = "display:block;  display: flex;"
+        numer.style = "margin-top:0px"
+        controllnumer.innerHTML = cars
+    })
   return (
       <div className="confresrvaion">
           <div className="confirp-1">
-                <div className="confirp">
-                    <FontAwesomeIcon icon={faChevronLeft} />
+              <div className="confirp">
+                  <Link to={"/appartement/"+idappartement} className="inconconfig">
+                       <FontAwesomeIcon icon={faChevronLeft}  />
+                  </Link>
                     <h1>Confirmer et payer</h1>
                 </div>
             </div>
@@ -19,16 +41,9 @@ function Confreservaion() {
                       <div className="datereservation">
                           <div className="datereservation-1">
                               <p className='date'>Date</p>
-                              <p className='date-heur'>10–16 févr.</p>
+                              <p className='date-heur'>{datereservation}.</p>
                           </div>
-                          <p className='update'>Modifier</p>
-                      </div>
-                      <div className="heurerarriver">
-                          <div className="heurerarriver-1">
-                              <p className='heur-a'>Heure d'arrivée</p>
-                              <p className='date-heur'>10–16 févr.</p>
-                          </div>
-                          <p className='update'>Modifier</p>
+                          <div className='update'><Popupdate /></div>
                       </div>
                   </div>
                   <div className="connectreservation">
@@ -36,13 +51,23 @@ function Confreservaion() {
                       <div className="orderpay">
                           <div className="pays">
                               <div className="pay-1">
-                                  <div className="pay-2">pays/Region</div>
-                                  <div className="pay-3">Mali</div>
+                                <select name="cars" id="cars" className='cars'>
+                                    <option value="+223">Mali(+223)</option>
+                                </select>
                               </div>
-                              <div className="pay-icon"><FontAwesomeIcon icon={faChevronDown}/></div>
                           </div>
                           <div className="numer">
-                              zdsfahbhq
+                              <div className="numberpay">
+                                  <p>Numéro de téléphone</p>
+                              </div>
+                              <div className="numer-1">
+                                  <div className="numer-2">
+                                      <p className='controllnumer'></p>
+                                  </div>
+                                  <div className="numer-3">
+                                      <input  type="text" id='number' />
+                                  </div>
+                              </div>
                           </div>
                       </div>
                     <div className="confinfo">
@@ -57,8 +82,8 @@ function Confreservaion() {
               </div>
               <div className="infreservation">
                   <div className="infreservation-img">
-                      <div className="img">
-                          <img src="../image/sauter.png" alt="tamnal" />
+                      <div className="img"> 
+                          <img src={datareservation.reservation?.image} alt="tamnal" />
                       </div>
                       <div className="info-image">
                           <div className="info-image1">
@@ -78,17 +103,17 @@ function Confreservaion() {
                   <div className="detail-price">
                       <h1>Details de prix</h1>
                       <div className="price-day">
-                          <p>130,00 € x 6 nuits</p>
-                          <p>780,00 €</p>
+                          <p>{datareservation.reservation?.price} FCFA x {nuberday} nuits</p>
+                          <p>{datareservation.reservation?.frais} FCFA</p>
                       </div>
                       <div className="price-frais">
                           <p>Frais de service</p>
-                          <p>780,00 €</p>
+                          <p>{datareservation.reservation?.fraisService} FCFA</p>
                       </div>
                       <div className="barre" style={{margin:"10px 0px"}}></div>
                       <div className="total">
-                          <p>Total <span>(X)F</span></p>
-                          <p>912,14 €</p>
+                          <p>Total <span>(XOF)</span></p>
+                          <p>{datareservation.reservation?.total} FCFA</p>
                       </div>
                   </div>
               </div>

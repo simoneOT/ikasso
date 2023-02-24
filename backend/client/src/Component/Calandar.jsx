@@ -1,9 +1,15 @@
+import moment from 'moment';
 import React, { useState,useRef } from 'react';
 import 'react-day-picker/dist/style.css';
-import Day from './calandar/Day';
+import { useSelector } from 'react-redux';
+import Popup from 'reactjs-popup';
+import DayNavbar from './calandar/DayNavbar';
 
 
 function Calandar() {
+  const dateRedux = useSelector(state => state.dateRedux)
+  let dateentrer = moment(dateRedux.date.dateenrer).format('L') 
+  let datesortie = moment( dateRedux.date.datesortie).format('L')
   const [date, seDate] = useState(false)
   const refdateentrer = useRef()
   const refdatesorie = useRef()
@@ -12,35 +18,29 @@ function Calandar() {
         seDate(false)
       }
   })
-  // let footer = "";
-  // if (range?.from) {
-  //   if (!range.to) {
-  //     footer = moment(range.from).format('LL')
-  //   } else if (range.to) {
-  //     footer = moment(range.to).format('LL')
-  //   }
-  // }
   return (
-    <div className="calandar" >
-      <div className="calandardate" >
-        <div className="dateentrer" ref={refdateentrer} onClick={() => {
-            refdatesorie.current.classList.remove('active')
-            refdateentrer.current.classList.toggle('active')
-            seDate(true)
-          }}>Date entrée</div>
-        <div className="datesorie" ref={refdatesorie} onClick={() => {
-          refdateentrer.current.classList.remove('active')
-          refdatesorie.current.classList.toggle('active')
-          seDate(true)
-        }}>Date de sortie</div>
-      </div>
-      {
-        date &&
-        <div className="DayPicker" >
-            <Day/>
+    <Popup trigger={
+      <div className="calandar" >
+        <div className="calandardate" >
+          <div className="dateentreer-1">
+            <div className="dateentrer">Date entrée</div>
+            { dateentrer!=="Invalid date"?<p>{dateentrer}</p>:<p>Entrer une date</p>}
+          </div>
+          <div className="datesorie-1">
+            <div className="datesorie">Date de sortie</div>
+              {datesortie!=="Invalid date" ? <p>{datesortie}</p>: <p>Entrer une date</p>}
+          </div>
         </div>
-        }
-    </div>
+      </div>
+    } modal nested>
+      {
+        close => (
+          <div className="days">
+            <DayNavbar close={close} />
+          </div>
+        )
+      }
+    </Popup>
   );
   
 }

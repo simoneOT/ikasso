@@ -1,24 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const counterSlice = createSlice({
-  name: 'date',
+export const dateredux = createSlice({
+  name: 'dateredux',
   initialState:{
-    date:{}
+    date: {},
+    reservation:{}
   },
   reducers: {
     getdate: (state, action) => {
       state.date = action.payload
     },
     daletegetdate: (state) => {
-      state.date=""
+      state.date = ""
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    datareservation: (state, action) => {
+      state.reservation= action.payload
     },
+    updatereservation: (state, action) => {
+        state.date=action.payload
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getdate, daletegetdate, incrementByAmount } = counterSlice.actions
+export const { getdate, daletegetdate, datareservation, updatereservation } = dateredux.actions
 
-export default counterSlice.reducer
+export default dateredux.reducer

@@ -10,6 +10,8 @@ import { useEffect } from 'react'
 import { user } from '../query/Url'
 import axios from 'axios'
 import Calandar from './Calandar'
+import Popupcherche from './pupop/Popupcherche'
+import Popupprofil from './pupop/Popupprofil'
 
 
 function Navbar() {
@@ -39,15 +41,10 @@ function Navbar() {
         <div className="container-wrapper">
             <div className="logo">Logo</div>
             <div className="wrapper">
-                  <div className="contenerSearch">
+                <div className="contenerSearch">
                     <Calandar/>
                     <div className="space"></div>
-                    <div className=" nombreplace">Chercher un appartement</div>
-                    <div className=" iconsearch">
-                        <div className="search">
-                        <FontAwesomeIcon icon={faSearch} />
-                        </div>
-                    </div>
+                    <Popupcherche/>
                 </div>
             </div>
             <div className="container_inf">
@@ -67,7 +64,7 @@ function Navbar() {
                                 {
                                     accountservice.islogged()?
                                     <>
-                                        <li onClick={()=>setValue(false)}>Allez vers mon profil</li>
+                                        <li onClick={() => setValue(false)}><Popupprofil uid={uid} /></li>
                                         <li onClick={()=>{setValue(false)
                                             accountservice.removeToken()
                                         }}>Se deconnecté</li>
@@ -80,13 +77,11 @@ function Navbar() {
                                                 setSignIn(false)
                                             }}>S'inscrire
                                         </li>
-                                        <li onClick={
-                                            ()=>{
-                                                setValue(false)
-                                                setSignUp(false)
-                                                setSignIn(true)
-                                            }}> Se connecté 
-                                        </li>
+                                        <li onClick={() => {
+                                            setValue(false)
+                                            setSignIn(true)
+                                            setSignUp(false)          
+                                        }}>Se connecter </li>
                                     </>
                                 }
                             </ul>

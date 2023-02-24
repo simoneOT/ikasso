@@ -76,7 +76,7 @@ const signIn= (req, res)=>{
                bcrypt.compare(user.password, password )
                .then(()=>{
                 const token = createToken(user.id, user.admin )
-                    res.cookie('jwt', token, {httpOnly: true, maxAge: Maxage})
+                    res.cookie('jwt',JSON.stringify(token), {maxAge: Maxage, httpOnly: true})
                     const order = user
                     res.status(200).json({...order, token})
                })
@@ -112,30 +112,35 @@ const updatepassword =  (req, res)=>{
     })
 }
 const biographie = (req, res)=>{
-    const{nom_prenom, mail, tel, ville, quartier, profil}= req.body
-    pool.query(query.OneUser, [mail], (error, reponse)=>{
-        const usercount = !reponse.rowCount
-        if (error) {
-            res.status(500).json({error})
-        } else {
-            if (!usercount) {
-                pool.query(query.updateUser, [nom_prenom, mail, tel, ville, quartier, profil], (err, respo)=>{
-                   if(err) throw res.status(500).json(err)
-                   res.status(500).json({message: "Vous avez modifié votre bio avec succès"})
-                } )
-            } else{
-                res.status(500).json({message:"Votre bio n'est pas modifier"})
+    const { nom, email, telephone, adresse } = req.body
+    console.log(nom, email, telephone, adresse);
+    const id = parseInt(req.params.id)
+    pool.query(query.OneUser, [id])
+        .then((reponse) => {
+            if (reponse.rows) {
+                pool.query(query.updateUser, [nom, email, telephone, adresse])
+                    .then(() => {
+                        res.status(200).json({message: "profil modifier avec succès"})
+                    })
+                    .catch((error) => {
+                    res.status(500).json(error)
+                })
+            }else{
+                res.status(404).json({message:"Votre bio n'est pas modifier"})
             }
-        }
-    } )
+        })
+        .catch((error) => {
+            res.status(500).json({error})
+    })
 }
 // profile 
 const uploadeProfile =  (req, res)=>{
+    console.log(req.profil);
     const id = parseInt(req.params.id)
     if(!id){
         return res.status(400).send("id n'est pas valide"+req.params.id);
     } else{
-        let filename = id? "./images/"+id+".jpg":""
+        let filename = id? "./profil/"+id+".jpg":""
         pool.query(query.profile_user, [id, filename], (error, reponse)=>{
             if (error){
                 res.status(500).json({error})
