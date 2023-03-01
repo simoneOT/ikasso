@@ -1,0 +1,358 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+    box-sizing: border-box;
+    font-family:  "Roboto", "Helvetica Neue", sans-serif !important;
+}
+.container_PropProfil{
+    margin-left: 50px;
+}
+.container_PropProfil .PropProfil img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.container_reservation{
+    margin-top: 30px;
+    margin-left: 135px;
+}
+.wrapper_reservation{
+    display: flex;
+    flex-direction: column;
+    border: 0.1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    padding: 30px;
+}
+.prix_comment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.prixday p span{
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+.comment p{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.formreservation{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    border:1px solid rgba(0, 0, 0, .2);
+    border-radius: 10px;
+}
+.annulation{
+    margin-top: 20px;
+}
+.annulation{
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.conditonannulation{
+    margin-top: 5px;
+    border:1px solid rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+}
+.conditonannulation p{
+    margin-right: 20px;
+}
+.conditonannulation input{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.dtentrereservation{
+    padding: 10px;
+    flex: 1;
+}
+.desoriereservation{
+    padding: 10px;
+    border-right:1px solid rgba(0, 0, 0, .2);
+    flex: 1;
+}
+
+.condition1, .condition2{
+    display: flex;
+    flex-direction: row;
+}
+.condition1{
+   margin: 30px 20px;
+}
+.condition2{
+   padding: 30px 20px;
+}
+.condition2{
+     border-top:1px solid rgba(0, 0, 0, .2);
+}
+
+.button_reservation {
+    padding: 16px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(42, 65, 165);
+    margin: 30px 0px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.button_reservation button{
+    color: white;
+    font-size: 20px;
+}
+.conseil p{
+    text-align: center;
+        padding: 0px 12px;
+    letter-spacing: 0.5px;
+}
+.flex_date{
+    margin-top: 4px;
+    padding: 16px 0px;
+    text-decoration: underline;
+    color: black;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.flex_date:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .2);
+}
+.detail_prix .reservetotal{
+    display: flex;
+    margin: 20px 0px;
+    font-size: 22px;
+    font-weight: bold;
+    justify-content: space-between;
+}
+.frais, .fraisService, .fraisMenage{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px ;
+    font-size: 18px;
+    font-weight: 300px;
+}
+ #frais,  #fraisService,  #fraisMenage{
+    text-decoration: underline;
+}
+.errr_reservation{
+    font-size: 18px;
+    font-weight: 600px;
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.confresrvaion .confirp-1 {
+     padding-bottom: 32px;
+     padding: 0px 80px;
+}
+.confirm{
+    flex: 2;
+}
+.pay-1{
+    width: 800px;
+}
+.cars{
+    min-height: 56px !important;
+    width: 100% !important;
+    border: none !important;
+    outline: none !important;
+    margin: 0px !important;
+    padding: 26px 36px 10px 12px;
+}
+
+.infreservation{
+    flex: 1.3;
+    margin-left: 70px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    height: 491px;
+}
+.infreservation-img{
+    display: flex;
+    margin-bottom: 30px;
+}
+.info-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 40px;
+}
+.img{
+    width: 124px;
+    height: 106px;
+}
+.infreservation-img img{
+    height: 100% ;
+    width: 100%;
+    border-radius: 10px;
+}
+.security p{
+    padding: 20px 0px;
+    text-align: center;
+    font-size: 1.3rem;
+}
+.price-day, .price-frais{
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.total{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-top: 20px;
+}
+.detail-price h1{
+    padding: 24px 0px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.update .button{
+    padding: 10px 10px;
+}
+.update .button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 10px;
+}
+.inconconfig{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right:20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.inconconfig:hover{
+    background-color: rgba(0, 0, 0, .2);
+}
+ .updatedate{
+   padding: 10px 20px;
+   background-color: rgb(42, 65, 165);
+   color: white;
+   font-size: 18px;
+   border-radius: 10px;
+   float: right;
+   margin-right: 20px;
+}
+#popup-2 > div.modal > div > div > div.rdp-month.rdp-caption_start > table > tbody > tr > td > button,
+#popup-2 > div.modal > div > div > div.rdp-month.rdp-caption_end > table > tbody > tr> td > button
+{
+    padding: 30px !important;
+}
+.confresrvaion .confirp-1 .confirp{
+    display: flex;
+    flex-direction: row;
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+    align-items: center !important;
+}
+.datereservation, .heurerarriver{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 24px;
+}
+.datereservation-1 .date, .heurerarriver-1 .heur-a{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.datereservation .update ,.heurerarriver .update{
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.heurerarriver-1 .date-heur{
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+.connectreservation{
+    display: flex;
+    flex-direction: column;
+}
+.connectreservation{
+    padding:30px 0px ;
+}
+.connectreservation h1{
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+.orderpay{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.pays{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.pay-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.numer{
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.numberpay{
+    font-size: 18px;
+}
+.numer-1{
+    display: flex;
+    display: none;
+}
+.numer-2{
+    height: 100%;
+    width: 37px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.numer-3{
+        height: 40px;
+    font-size: 20px;
+}
+.numer-3 input:focus{
+    outline: none;
+}
+.connectreservation .confinfo{
+    font-size: 16px;
+}
+.confresrvaion .update .confirp-1 .confirp svg{
+    font-size: 20px;
+    padding-right: 32px !important;
+}
+.confresrvaion .confirp-1 .confirp h1{
+    font-size: 32px !important;
+    line-height: 36px !important;
+    font-weight: 600 !important;
+}
+.confwrapper .confirm .confpayer h1{
+    padding-bottom: 24px;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.confwrapper{
+    display: flex;
+    padding: 0px 80px;
+}
+
+
+
+

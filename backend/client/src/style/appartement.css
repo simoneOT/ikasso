@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.container_appartement{
+    margin-top: 160px;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.appartements{
+    max-width:100%;
+    max-height: 460px;
+}
+.tabnail{
+    max-height: 414px;
+    max-width: 478px;
+}
+.appartements .images .tabnail img{
+    background-color: RGBa(0, 0, 0, 0.2);
+    height: 100vw;
+    object-fit: cover;
+    width:  100%;
+    height: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.images{
+    display: flex
+}
+.wraper_container{
+    margin-top: 50px;
+}
+.listeImage{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.appartements .images  .listeImage img{
+    margin-left: 20px;
+    object-fit: cover;
+    width: 300px;
+    height: 197px;
+}
+.information_container{
+    display: flex;
+    flex-direction: column;
+}
+ div > div.container_appartement > div > div.images > div.listeImage > img:nth-child(1), 
+ div > div.container_appartement > div > div.images > div.listeImage > img:nth-child(2),
+ div > div.container_appartement > div > div.images > div.listeImage > img:nth-child(3){
+    margin-bottom: 20px;
+}
+ div > div.container_appartement > div > div.images > div.listeImage > img:nth-child(3){
+    border-top-right-radius: 30px;
+}
+ div > div.container_appartement > div > div.images > div.listeImage > img:nth-child(6){
+    border-bottom-right-radius: 30px;
+}
+.appartement_info{
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.appartement_info{
+    padding: 10px 0px;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.containerinfo{
+    display: flex;
+}
+.ville, .rue, .porte {
+    margin-left: 10px;
+}
+.prix{
+    margin-left: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.prix p span{
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+.wraper_container{
+    display: flex;
+}
+.comentaireikasso{
+    padding: 30px 0px;
+}
+.desc_commenaire1{
+    margin-bottom: 24px
+}
+.desc_commenaire1, .desc_commenair2{
+    padding-left: 20px;
+}
+.information_container{
+    width: 60%;
+}
+.condition1_condition2{
+    width: 100% !important;
+}
+.commentaire2, .commentaire1{
+    display: flex;
+}
+.desc_commenaire1 h3, .desc_commenair2 h3{
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.desc_commenaire1 p, .commentaire2 p{
+    color: rgb(113, 113, 113) !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 20px !important;
+}
+.barre{
+    height: 1px;
+    background-color: RGBa(0, 0, 0, 0.2);
+}
+.description{
+    margin: 30px 0px;
+}
+.description h1{
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(42, 65, 165);
+    text-shadow: 0px 0px 10px 2px rgba(0, 0, 0, .2)
+}
+.description span button{
+    color: black;
+    font-size: 22px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#root > div.container_appartement > div > div.wraper_container > div.information_container > div.containerday > div.selectday > div > div > div.rdp-month.rdp-caption_start > table > tbody > tr> td> button,
+#root > div.container_appartement > div > div.wraper_container > div.information_container > div.containerday > div.selectday > div > div > div.rdp-month.rdp-caption_end > table > tbody > tr > td > button{
+    padding: 26.5px !important;
+}
+.selectday{
+    margin: 40px 0px;
+}
+.deleteday{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+.delete p, .deletedayicon{
+    padding: 10px;
+    text-decoration: underline;
+    color: black;
+}
+.deletedayicon:hover, .delete p:hover{
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    cursor: pointer;
+}
+.dtentrereservation input, .desoriereservation input{
+    outline: none;
+}
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+.popup-content {
+    margin: auto;
+    background: rgb(255, 255, 255);
+    max-width: 80%;
+    padding: 2.5rem;
+    border-radius: 10px !important;
+}
+.modal{
+    width: 100%;
+    height: 600px;
+    overflow-y: scroll;
+}
+.popup-arrow {
+  color: rgb(255, 255, 255);
+}
+[role='tooltip'].popup-content {
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
+}
+
+.modal > .header .ikasso span {
+  font-size: 30px;
+  color: rgb(42, 65, 165);
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.modal > .header .ikasso p{
+    margin: 30px 0px;
+    font-weight: 300;
+    font-size: 20px;
+}
+.modal .content {
+  padding: 10px 5px;
+}
+.modal .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+ .close{
+    padding-bottom: 20px;
+ }
+ .close button {
+  cursor: pointer;
+  display: block;
+  padding:2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: rgb(42, 65, 165);
+  border: 1px solid white;
+  color: white;
+  border-radius: 18px;
+}
+
+ 

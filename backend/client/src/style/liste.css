@@ -1,0 +1,51 @@
+
+.title{
+    padding-left: 15px;
+   margin-top: 15px;
+   padding-bottom: 0px;
+}
+.title h1{
+    font-size: 25px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.image{
+    height: 250px;
+    width: 362px;
+}
+.image img{
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.localisation{
+    margin-top: 24px;
+}
+.localisation span, .price span{
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: .5px;
+    text-transform: capitalize;
+}
+.date, .reservation, .price{
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.Liste{
+    /* padding-left: 11px !important;
+    padding-right: 20px !important; */
+    padding: 20px 10px;
+}
+.wrapper{
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.categorieapp{
+    margin-top: 160px ;
+}
