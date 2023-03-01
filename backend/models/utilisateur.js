@@ -61,10 +61,6 @@ module.exports = (sequelize, DataTypes) => {
         args: false,
         msg: 'Mot de passe ne peut pas être vide',
       },
-    },
-    admin: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
     }
   }, {
     sequelize,
