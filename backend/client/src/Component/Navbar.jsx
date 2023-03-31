@@ -40,7 +40,7 @@ function Navbar() {
     <div className='container_navbar'>
         <div className="container-wrapper">
             <div className="logo">Logo</div>
-            <div className="wrapper">
+            <div className="wrapper-cherche">
                 <div className="contenerSearch">
                     <Calandar/>
                     <div className="space"></div>

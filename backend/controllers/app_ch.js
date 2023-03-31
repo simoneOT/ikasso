@@ -18,79 +18,69 @@ const getOneAppartement = (req, res)=>{
             res.status(200).json(reponse.rows)
         })
         .catch((error)=> {
-            console.log(error);
             res.status(500).json(error)})
     }
 }
-const InsertAppartement = (req, res)=>{
-    const{type_app_ch, ville_app_ch, quartier_app_ch, rue_app_ch, porte_app_ch, description_ch, prix, dateajout, idUtili}=req.body
-        pool.query(query.select_appartement_porte_rue, [rue_app_ch, porte_app_ch,  ville_app_ch, quartier_app_ch], (error, reponse)=>{
-            if (error) {
-                return res.status(500).json(error)
+const InsertAppartement = (req, res) => {
+    const dateajout = new Date()
+    const{adress, rue, porte, prix, quartier, description}=req.body
+    pool.query(query.select_appartement_porte_rue, [rue, porte, adress])
+        .then((response) => {
+            if (response.rows.length) {
+                return res.status(401).json({message:"Cet appartement existe déja"})
             } else {
-                if (reponse.rows.length) {
-                    return res.status(401).json({message:"Cet appartement existe déja"})
-                } else { 
-                    pool.query(query.InsertAppartemen, [type_app_ch, ville_app_ch, quartier_app_ch, rue_app_ch, 
-                        porte_app_ch, description_ch, prix, dateajout, idUtili],
-                           (er, resp )=>{
-                            if (er) {
-                                return res.status(500).json(er)
-                            } else {
-                                return res.status(200).json({message:"Appartement ajouter avec succès"})
-                            }
-                           }
-                        )
-                }
+                pool.query(query.InsertAppartemen, [rue, porte, adress, description, prix, quartier, dateajout])
+                    .then((response) => {
+                        return res.status(200).json({message:"Appartement ajouter avec succès"})
+                    })
+                    .catch((error) => {
+                        return res.status(500).json(error)
+                })
+                          
             }
         })
+        .catch((error) => {
+            return res.status(500).json(error)
+    })
 }
-const updateAppartement = (req, res)=>{
-    const{type_app_ch, ville_app_ch, quartier_app_ch, rue_app_ch, porte_app_ch, description_ch, prix}=req.body
+const updateAppartement = (req, res) => {
+    const { adress, rue, porte, prix, description } = req.body
     const id = parseInt(req.params.id)
-    const idUtili = req.id
-    if (id && idUtili) {
-        pool.query(query.select_app_ch, [id, idUtili ], (error, reponse)=>{
-            if (error) {
-                return res.status(500).json(error)
-            } else {
-               if (reponse.rows.length) {
-                pool.query(query.updateAppartement, [id, idUtili,
-                    type_app_ch, ville_app_ch, quartier_app_ch,
-                     rue_app_ch, porte_app_ch, 
-                     description_ch, prix ], (err, resp)=>{
-                        if (err) {
-                            return res.status(500).json(err)
-                        } else {
-                            pool.query(query.getdeleteAppartement,[id], (e, r)=>{
-                                if (e) {
-                                    return res.status(500).json(e)
-                                } else {
-                                    return res.status(500).json(r.rows)
-                                }
-                            })
-                        }
-                } )
-               } else {
-                    return res.status(401).json({message:"Cet appartement appartient à une autre personne"})
-               }
-            }
-        })
-    } else {
-        
-    }
-  
+    if (id) {
+        pool.query(query.select_app_ch, [id])
+            .then((response) => {
+                if (response.rowCount) {
+                    pool.query(query.updateAppartement, [id, adress, rue, porte, prix, description])
+                        .then((response) => {
+                            res.status(200).json({message:"Appartement modifier avec succès"}) 
+                        })
+                        .catch((err) => {
+                            res.status(500).json(err)
+                        })
+               } 
+            })
+            .catch((error)=>res.status(500).json(error))
+    } 
 }
 const deleteapparte_ch = (req, res)=>{
-    const id = parseInt( req.params.id)
-    if (id) {
-        pool.query(query.Dlete_appartement, [id], (error, reponse)=>{
-            if(error)  throw  res.status(200).json(repo)
-            res.status(200).json({message: "Appartement Supprimer avec succès"})
-        })
-    } else {
-        return res.status(401).json({message:"veillez selection un appartement"})
-    }
+    const id = parseInt(req.params.id)
+    pool.query(query.get0neReservation, [id])
+    .then((reponse) => {
+        if (reponse.rowCount) {
+            res.status(401).json({ message: "Appartement est en cours de réservation!" })
+        } else {
+            pool.query(query.Dlete_appartement, [id])
+                .then(() => {
+                    res.status(200).json({message: "Appartement Supprimer avec succès"})
+                })
+                .catch((err) => {
+                    res.status(500).json(err)
+                })
+        }     
+    })
+    .catch((error)=>{
+        res.status(500).json(error)
+    })
 }
 const getappa_user = (req, res)=>{
     const idUtili = req.id

@@ -1,42 +1,37 @@
 const pool = require("../config/db.config");
 const query = require("./queries")
-const moment = require('moment')
-moment().format();
 
 const reserver= ( req, res)=>{
     const idapp_ch = parseInt(req.params.id)
-    const{dateEntrer, dateSortie}= req.body
-    console.log(idapp_ch, dateEntrer, dateSortie);
-    if (idapp_ch && req.id) {
-        pool.query(query.selet_reserver, [idapp_ch, dateEntrer, dateSortie ], (error, reponse)=>{
-            if (error) {
-                return res.status(500).json(error)
-            } else {
-                console.log(reponse.rows.length);
-                if (reponse.rows.length) {  
-                        res.status(401).json({message:"appartement en court de reservation"}) 
-                } else{
-                    pool.query(query.inserReservation, [idapp_ch, req.id, dateEntrer, dateSortie], 
-                        (err, repo)=>{
-                            if (err) {
-                                return res.status(500).json(err)
-                            } else{
-                                return res.status(200).json({message:"appartement reservé avec succès"})
-                            }
-                        }) 
+   
+    const { dateEntrer, dateSortie, datereservation, userId, frais, fraisService, total, telephone } = req.body
+    if (idapp_ch, userId) {
+        pool.query(query.selet_reserver, [idapp_ch, dateSortie])
+            .then((response) => {
+                if (response.rows.length) {  
+                       res.status(401).json({message:"Appartement en court de reservation"}) 
+                } else {
+                    pool.query(query.inserReservation, [idapp_ch, userId, dateEntrer, dateSortie, datereservation, frais, fraisService, total, telephone])
+                        .then((respo) => {
+                             res.status(200).json({message:"Appartement reservé avec succès"})
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            res.status(500).json(error)
+                    })
                 }
-                } 
-            }
-        ) 
-    } else {
-        return res.status(401).json({message:"choisis un appartement pour reserveer"})
+            })
+            .catch((error) => {
+                return res.status(500).json(error)
+        })
+        
     }
 }
 
 const AllReservation = (req, res)=>{
-    const reservation = true
-    pool.query(query.getReservation, [reservation], (error, reponse)=>{
+    pool.query(query.getReservation, (error, reponse) => {
         if (error) {
+            console.log(error);
             res.status(500).json(error)
         } else {
             res.status(200).json(reponse.rows)
@@ -59,5 +54,14 @@ const updateReservation = (req, res)=>{
     }
     
 }
-
-module.exports={reserver, AllReservation, updateReservation}
+const deleteReservation = (req, res) => {
+    const id = parseInt(req.params.id)
+    pool.query(query.deleteReservation, [id])
+        .then((reponse) => {
+             res.status(200).json({message:"Réservation supprimer avec succès"})
+        })
+        .catch((error) => {
+            res.status(500).json(error)
+    })
+}
+module.exports={reserver, AllReservation, updateReservation, deleteReservation}

@@ -1,7 +1,6 @@
 const route = require('express').Router()
 const AppChcontrollers = require("../controllers/user.controllers")
 const upload = require('../middleware/upload')
-const verifyToken = require("../middleware/verifyToken")
 
 
 route.get("/",  AppChcontrollers.getAllUsers)
@@ -10,5 +9,6 @@ route.post("/",  AppChcontrollers.signup)
 route.post("/login",  AppChcontrollers.signIn)
 route.patch("/updatepassword/:id", AppChcontrollers.updatepassword)
 route.patch("/biographie/:id",   AppChcontrollers.biographie)
-route.patch("/uploidprofile/:id",  upload, AppChcontrollers.uploadeProfile)
+route.patch("/uploidprofile/:id", upload, AppChcontrollers.uploadeProfile)
+route.delete("/deleteUser/:id", AppChcontrollers.deleteUser)
 module.exports = route

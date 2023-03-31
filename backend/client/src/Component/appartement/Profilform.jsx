@@ -16,7 +16,7 @@ function Profilform({ setUpdate }) {
     const errorTelephone = document.querySelector(".telephone.error")
     const errorAdress = document.querySelector(".adress.error")
     const succes =  document.querySelector(".message.succes")
-  const Hundalupdate = () => {
+  const Hundalupdate = (e) => {
       errorNom.innerHTML=""
       errorEmail.innerHTML=""
       errorTelephone.innerHTML=""

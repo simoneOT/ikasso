@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleInfo, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import '../style/appartement.css'
@@ -10,6 +10,7 @@ import ClipLoader from 'react-spinners/ClipLoader'
 import Day from '../Component/calandar/Day'
 import Formreservation from '../Component/appartement/Formreservation'
 import Popupikaso from '../Component/pupop/popupikaso'
+import Navbar from '../Component/Navbar'
 
 
 function Appartement() {
@@ -38,9 +39,10 @@ function Appartement() {
       }
     }
     getOneAppartement()
-  },[])
+  },[idapp])
   return (
     <>
+      <Navbar/>
       {
         loading?      
       <div className='container_appartement'>
@@ -113,7 +115,12 @@ function Appartement() {
                     <div className="description">
                       <h1>I KA SO</h1>
                       <p>{appartement.description_ch}</p>
-                      <span><Popupikaso/><FontAwesomeIcon icon={faChevronRight} /></span>
+                      <span style={{display:"flex", marginTop:"10px"}}>
+                          <Popupikaso />
+                          <Link to="/" className="retour_accueil">
+                            <FontAwesomeIcon icon={faChevronRight} />
+                          </Link>
+                      </span>
                     </div>
                     <div className="barre"></div>
                     <Day />
@@ -124,15 +131,17 @@ function Appartement() {
                 </div>
               )})
           }
-        </div>
-      </div>
-    : <ClipLoader
-        loading={true}
-        cssOverride={override}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
+            </div>
+          </div>
+          
+          :
+            <ClipLoader
+              loading={true}
+              cssOverride={override}
+              size={150}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
       }
       </>
   )

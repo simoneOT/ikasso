@@ -11,17 +11,16 @@
 }
 .image{
     height: 250px;
-    width: 362px;
+    width: 327px;
 }
 .image img{
     height: 100%;
     width: 100%;
-    border-radius: 15px;
     object-fit: cover;
     cursor: pointer;
-}
-.localisation{
-    margin-top: 24px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    
 }
 .localisation span, .price span{
     font-size: 1.2rem;
@@ -29,20 +28,38 @@
     letter-spacing: .5px;
     text-transform: capitalize;
 }
+.informatioApp{
+    margin-top: 20px;
+    margin-left: 10px;
+    padding-bottom: 20px;
+}
 .date, .reservation, .price{
     font-weight: 300;
     font-size: 18px;
     letter-spacing: 1px;
 }
-
+.container_liste .ville{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family:  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 .Liste{
     /* padding-left: 11px !important;
     padding-right: 20px !important; */
-    padding: 20px 10px;
+    margin: 20px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+   border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
 }
-.wrapper{
-    margin-left: 25px;
-    margin-right: 25px;
+.wrapper-liste{
+    margin: 0px 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.wrapper-categorie{
+    margin: 0px 50px;
     display: flex;
     flex-wrap: wrap;
 }

@@ -5,9 +5,9 @@ const storage =   multer.diskStorage ( {
   destination : function  ( req ,  file ,  cb )  { 
        cb( null ,  `${__dirname}/../client/public/images/`) 
   },
-  filename : function  ( req ,  file ,  cb )  { 
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)+".jpg"
-    req.uniqueSuffix= uniqueSuffix
+  filename: function (req, file, cb) { 
+    const uniqueSuffix = "".concat(req.idapp,req.counterImage)+ ".jpg"
+    req.uniqueSuffix = uniqueSuffix
     cb ( null , uniqueSuffix)
   },
  })
@@ -16,9 +16,8 @@ module.exports = multer({
     fileSize:maxSize
 },
   fileFilter: (req, file, cb) => {
-    console.log(file);
-    if (req.counterImage===7) {
-      req.imageValidationError = "Au maximum  7 images";
+    if (req.counterImage===7 || req.counterImage >7) {
+      req.imageValidationError = "Au maximum  7 images pour un appartement";
       return cb(req.fileValidationError);
   }
    

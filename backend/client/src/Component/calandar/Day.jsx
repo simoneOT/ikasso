@@ -31,11 +31,6 @@ function Day({close}) {
   },[ range])
   return (
     <div className='containerday'>
-      <div className="close">
-        <button onClick={close}>
-            &times;
-        </button>
-      </div>
       <div className="selectday">
         <DayPicker
           numberOfMonths={2}

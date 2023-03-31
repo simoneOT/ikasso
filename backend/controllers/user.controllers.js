@@ -14,9 +14,9 @@ function createToken(id, admin){
 const getAllUsers = (req, res)=>{
     pool.query(query.getAllUsers, (error, reponse)=>{
         if (error) {
-            console.log(error);
             res.status(500).json(error)
         } else {
+            console.log(reponse.rows);
             res.status(200).json(reponse.rows)
         }
     })
@@ -37,12 +37,12 @@ const getOneUser = (req, res)=>{
     })
 }
 const signup =  (req, res) =>{
-    const{nom, email, telephone, adresse, password, profil}= req.body
-     pool.query(query.OneUser, [email], (error, reponse)=>{
-        const mailrows = !reponse.rows.length
+    const{nom, email, telephone, adresse, password}= req.body
+    pool.query(query.OneUser, [email], (error, reponse) => {
+         const mailrows = reponse?.rowCount
         if (error) {
             res.status(500).json(error)
-        } else if(!mailrows) {
+        } else if(mailrows) {
             res.status(401).json({message: "Ce mail est déja prit"})
         } else{
             const mail =  mailValidator.validate(email)
@@ -67,13 +67,14 @@ const signup =  (req, res) =>{
 }
 const signIn= (req, res)=>{
     const{email, password}= req.body
-    pool.query(query.Login, [email, password], (error, reponse)=>{
-        const user = reponse.rows.length
+    pool.query(query.Login, [email], (error, reponse)=>{
+        console.log(email);
+        const user = reponse.rowCount
         if (!user) {
             res.status(401).json({message: "Mot de passe ou nom d'utilisation incorrect"})
         } else {
             reponse.rows.map((user)=>{
-               bcrypt.compare(user.password, password )
+               bcrypt.compare(user.password, password)
                .then(()=>{
                 const token = createToken(user.id, user.admin )
                     res.cookie('jwt',JSON.stringify(token), {maxAge: Maxage, httpOnly: true})
@@ -135,12 +136,11 @@ const biographie = (req, res)=>{
 }
 // profile 
 const uploadeProfile =  (req, res)=>{
-    console.log(req.profil);
     const id = parseInt(req.params.id)
     if(!id){
         return res.status(400).send("id n'est pas valide"+req.params.id);
     } else{
-        let filename = id? "./profil/"+id+".jpg":""
+        let filename = id? "/profil/"+id+".jpg":""
         pool.query(query.profile_user, [id, filename], (error, reponse)=>{
             if (error){
                 res.status(500).json({error})
@@ -152,7 +152,28 @@ const uploadeProfile =  (req, res)=>{
                 } )
             }
         } )
-    }
-        
+    }    
 }
-module.exports={getAllUsers, getOneUser, signup, signIn, updatepassword, biographie, uploadeProfile}
+const deleteUser = (req, res) => {
+    const Userid = req.params.id
+    const date = new Date()
+    pool.query(query.getReservaionUser, [Userid, date])
+        .then((respo) => {
+            if (respo.rowCount) {
+                res.status(401).json({message:"L'utilisateur a fait une réservation d'appartement"})
+            } else {
+                pool.query(query.delete_user, [Userid])
+                    .then((response) => {
+                        res.status(201).json({message:"Utilisateur supprimé avec suucès"})
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        res.status(500).json({error})
+                })
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+    })
+}
+module.exports={getAllUsers, getOneUser, signup, signIn, updatepassword, biographie, uploadeProfile, deleteUser}

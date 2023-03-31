@@ -22,24 +22,29 @@ function Categoriapp() {
   },[village])
   return (
     <div className='container_liste categorieapp'>
+      <div className="ville">
+        <h1>Les appertement de {village}</h1>
+      </div>
       { dataapp?
-      <div className="wrapper">
+        <div className="wrapper-categorie">
         {dataapp.map((appartem, index) => {
         return(
           <Link style={{textDecoration:"none", color:"black"}} to={`/appartement/${appartem.idapp}`} key={index} >
             <div className="Liste" >
-              <Image idapp={appartem.idapp}/>
-              <div className="localisation">
-                <span>{appartem.quartier_app_ch}, {appartem.ville_app_ch}</span>
-              </div>
-              <div className="date">
-                <span> Ajouter il y'a 2 semaine</span>
-              </div>
-              <div className="reservation">
-                 <span>reserver du{}</span>
-              </div>
-              <div className="price">
-                <span>{appartem.prix} fcfa</span> par nuits
+              <Image idapp={appartem.idapp} />
+              <div className="informatioApp">
+                <div className="localisation">
+                  <span>{appartem.quartier_app_ch}, {appartem.ville_app_ch}</span>
+                </div>
+                <div className="date">
+                  <span> Ajouter il y'a 2 semaine</span>
+                </div>
+                <div className="reservation">
+                  <span>reserver du{}</span>
+                </div>
+                <div className="price">
+                  <span>{appartem.prix} fcfa</span> par nuits
+                </div>
               </div>
             </div>
           </Link>

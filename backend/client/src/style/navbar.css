@@ -14,10 +14,13 @@ body{
     position: fixed;
     width: 100%;
     top: 0;
+    z-index: 1;
 }
-.wrapper{
+.wrapper-cherche{
   max-height: 90px;
   max-weight: 900px;
+  display: flex;
+  flex-wrap: wrap;
 }
 .container-wrapper{
     display: flex;
@@ -282,7 +285,7 @@ body{
 }
 #popup-root .popup-overlay .popup-content {
   padding: 20px;
-  width: 50%;
+  width: 70%;
   height: 80%;
 }
 .updateprofil{
